@@ -4,5 +4,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## What does it do?
 
-It's an implementation of a dynamic hierarchical structure for Angular2. Suitable for menus.
+It's an implementation of a dynamic hierarchical structure for Angular2 and TailwindCSS. Suitable for menus.
 
