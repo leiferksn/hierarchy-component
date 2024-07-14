@@ -1,0 +1,26 @@
+<div class="flex flex-cols absolute top-16 left-4">
+    <div class="h-[400px] w-[300px] border border-slate-300 bg-gray-50 shadow-xl overflow-auto">
+        <div class="m-2 p-2 border border-slate-300">
+            <ng-container *ngTemplateOutlet="hierarchyNode; context: {$implicit: nodes, level: 'first'}"></ng-container>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #hierarchyNode let-nodes let-level="level" let-parent="parent" let-implicit>
+    <div>
+        <div *ngFor="let n of nodes">
+            <div class="m-0.5 grid grid-cols-2 border border-slate-300 border" [ngClass]="n.styles">
+                <div class="px-4 py-2  text-xs font-semibold">{{ n.name }} </div>
+                <div class="pr-0.5 text-end flex items-center justify-end font-semibold text-xs">
+                    <button class="px-0.5 border border-slate-300 mx-0.5" [ngClass]="b.styles"
+                        *ngFor="let b of n.buttons" (click)="b.click()">{{ b.get_icon }}</button>
+                </div>
+            </div>
+            <div class="my-0.5 pl-2 w-full text-xs" *ngIf="n.children && n.expanded">
+                <ng-container
+                    *ngTemplateOutlet="hierarchyNode; context: {$implicit: n.children, level: 'second', parent: n}"></ng-container>
+            </div>
+        </div>
+    </div>
+</ng-template>
